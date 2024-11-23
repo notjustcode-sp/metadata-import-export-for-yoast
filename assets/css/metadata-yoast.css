@@ -1,0 +1,79 @@
+/* Container for the main content */
+.miey-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-top: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* Progress bar styling */
+.miey-progress-bar {
+    width: 100%;
+    background: #e5e5e5;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.miey-progress-fill {
+    width: 0;
+    background: #0073aa;
+    height: 25px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Export data summary styling */
+.miey-export-data {
+    margin-top: 30px;
+}
+
+.miey-summary h3,
+.miey-summary h4 {
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.miey-summary-table,
+.miey-post-type-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.miey-summary-table th,
+.miey-summary-table td,
+.miey-post-type-table th,
+.miey-post-type-table td {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    text-align: left;
+}
+
+.miey-summary-table th,
+.miey-post-type-table th {
+    background-color: #f9f9f9;
+}
+
+.miey-summary-table tr:nth-child(even),
+.miey-post-type-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#miey-support-btn,
+#miey-docs-btn {
+    line-height: 22px;
+    float: right;
+    margin-left: 12px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 6;
+}
