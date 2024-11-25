@@ -16,7 +16,7 @@
  * Author URI:  https://robertdevore.com/
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: metadata-import-export-yoast
+ * Text Domain: mie-yoast
  * Domain Path: /languages
  * Update URI:  https://github.com/robertdevore/metadata-import-export-for-yoast/
  */
@@ -80,8 +80,8 @@ class Metadata_Import_Export_Yoast {
     public function register_menu() {
         $this->hook_suffix = add_submenu_page(
             'wpseo_dashboard',
-            esc_html__( 'Yoast Metadata Import/Export', 'metadata-import-export-yoast' ),
-            esc_html__( 'Metadata Import/Export', 'metadata-import-export-yoast' ),
+            esc_html__( 'Metadata Import/Export for Yoast', 'mie-yoast' ),
+            esc_html__( 'Import/Export', 'mie-yoast' ),
             'read',
             'yoast-metadata-import',
             [ $this, 'render_tabs_page' ]
@@ -134,29 +134,29 @@ class Metadata_Import_Export_Yoast {
     public function render_tabs_page() {
         // Check if the user has permission.
         if ( ! $this->user_has_permission() ) {
-            wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'metadata-import-export-yoast' ) );
+            wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'mie-yoast' ) );
         }
 
         $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( $_GET['tab'] ) : 'import';
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e( 'Metadata Import/Export for Yoast', 'metadata-import-export-yoast' ); ?>
+            <h1><?php esc_html_e( 'Metadata Import/Export for Yoast', 'mie-yoast' ); ?>
                 <a id="miey-support-btn" href="https://robertdevore.com/contact/" target="_blank" class="button button-alt" style="margin-left: 10px;">
-                    <span class="dashicons dashicons-format-chat" style="vertical-align: middle;"></span> <?php esc_html_e( 'Support', 'metadata-import-export-yoast' ); ?>
+                    <span class="dashicons dashicons-format-chat" style="vertical-align: middle;"></span> <?php esc_html_e( 'Support', 'mie-yoast' ); ?>
                 </a>
                 <a id="miey-docs-btn" href="https://robertdevore.com/articles/metadata-import-export-for-yoast/" target="_blank" class="button button-alt" style="margin-left: 5px;">
-                    <span class="dashicons dashicons-media-document" style="vertical-align: middle;"></span> <?php esc_html_e( 'Documentation', 'metadata-import-export-yoast' ); ?>
+                    <span class="dashicons dashicons-media-document" style="vertical-align: middle;"></span> <?php esc_html_e( 'Documentation', 'mie-yoast' ); ?>
                 </a>
             </h1>
             <h2 class="nav-tab-wrapper">
                 <a href="?page=yoast-metadata-import&tab=import" class="nav-tab <?php echo $active_tab === 'import' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e( 'Import', 'metadata-import-export-yoast' ); ?>
+                    <?php esc_html_e( 'Import', 'mie-yoast' ); ?>
                 </a>
                 <a href="?page=yoast-metadata-import&tab=export" class="nav-tab <?php echo $active_tab === 'export' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e( 'Export', 'metadata-import-export-yoast' ); ?>
+                    <?php esc_html_e( 'Export', 'mie-yoast' ); ?>
                 </a>
                 <a href="?page=yoast-metadata-import&tab=settings" class="nav-tab <?php echo $active_tab === 'settings' ? 'nav-tab-active' : ''; ?>">
-                    <?php esc_html_e( 'Settings', 'metadata-import-export-yoast' ); ?>
+                    <?php esc_html_e( 'Settings', 'mie-yoast' ); ?>
                 </a>
             </h2>
             <div class="tab-content">
@@ -189,12 +189,12 @@ class Metadata_Import_Export_Yoast {
         ?>
         <div class="miey-container">
             <div class="miey-import-section">
-                <h2><?php esc_html_e( 'Import Yoast SEO Metadata', 'metadata-import-export-yoast' ); ?></h2>
-                <p><?php esc_html_e( 'Upload a CSV file to import metadata into your site. Please ensure the file is properly formatted according to the plugin\'s specifications.', 'metadata-import-export-yoast' ); ?></p>
+                <h2><?php esc_html_e( 'Import Yoast SEO Metadata', 'mie-yoast' ); ?></h2>
+                <p><?php esc_html_e( 'Upload a CSV file to import metadata into your site. Please ensure the file is properly formatted according to the plugin\'s specifications.', 'mie-yoast' ); ?></p>
                 <form id="yoast-import-form" enctype="multipart/form-data" method="post">
                     <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
                     <button type="submit" class="button button-primary">
-                        <?php esc_html_e( 'Upload and Import', 'metadata-import-export-yoast' ); ?>
+                        <?php esc_html_e( 'Upload and Import', 'mie-yoast' ); ?>
                     </button>
                 </form>
                 <div id="import-progress-bar" class="miey-progress-bar" style="display: none;">
@@ -216,10 +216,10 @@ class Metadata_Import_Export_Yoast {
         ?>
         <div class="miey-container">
             <div class="miey-export-section">
-                <h2><?php esc_html_e( 'Export Yoast SEO Metadata', 'metadata-import-export-yoast' ); ?></h2>
-                <p><?php esc_html_e( 'Click the button below to export your site\'s Yoast SEO metadata to a CSV file. You can edit this file and import it back to update your metadata.', 'metadata-import-export-yoast' ); ?></p>
+                <h2><?php esc_html_e( 'Export Yoast SEO Metadata', 'mie-yoast' ); ?></h2>
+                <p><?php esc_html_e( 'Click the button below to export your site\'s Yoast SEO metadata to a CSV file. You can edit this file and import it back to update your metadata.', 'mie-yoast' ); ?></p>
                 <button type="button" class="button button-primary" id="export-button">
-                    <?php esc_html_e( 'Export Metadata', 'metadata-import-export-yoast' ); ?>
+                    <?php esc_html_e( 'Export Metadata', 'mie-yoast' ); ?>
                 </button>
                 <div id="export-progress-bar" class="miey-progress-bar" style="display: none;">
                     <div id="export-progress-fill" class="miey-progress-fill"></div>
@@ -242,7 +242,7 @@ class Metadata_Import_Export_Yoast {
 
         // Check user permissions.
         if ( ! $this->user_has_permission() ) {
-            wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'mie-yoast' ) ] );
         }
 
         // Retrieve settings.
@@ -267,6 +267,7 @@ class Metadata_Import_Export_Yoast {
         $posts_with_metadata    = 0;
         $posts_without_metadata = 0;
 
+        // @TODO localize these.
         $csv_data = [ [ 'ID', 'Post Type', 'Slug', 'Keyphrase', 'SEO Title', 'SEO Description' ] ];
 
         foreach ( $posts as $post ) {
@@ -338,11 +339,11 @@ class Metadata_Import_Export_Yoast {
 
         // Check user permissions.
         if ( ! $this->user_has_permission() ) {
-            wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Permission denied.', 'mie-yoast' ) ] );
         }
 
         if ( ! isset( $_FILES['csv_file'] ) || ! file_exists( $_FILES['csv_file']['tmp_name'] ) ) {
-            wp_send_json_error( [ 'message' => esc_html__( 'No file uploaded.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'No file uploaded.', 'mie-yoast' ) ] );
         }
 
         $file = $_FILES['csv_file'];
@@ -350,26 +351,26 @@ class Metadata_Import_Export_Yoast {
         // Verify the file type.
         $filetype = wp_check_filetype( $file['name'] );
         if ( $filetype['ext'] !== 'csv' ) {
-            wp_send_json_error( [ 'message' => esc_html__( 'Invalid file type. Please upload a CSV file.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Invalid file type. Please upload a CSV file.', 'mie-yoast' ) ] );
         }
 
         // Open and read the CSV file.
         $handle = fopen( $file['tmp_name'], 'r' );
         if ( ! $handle ) {
-            wp_send_json_error( [ 'message' => esc_html__( 'Could not open the uploaded file.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Could not open the uploaded file.', 'mie-yoast' ) ] );
         }
 
         $header = fgetcsv( $handle );
         if ( ! $header ) {
             fclose( $handle );
-            wp_send_json_error( [ 'message' => esc_html__( 'Empty or invalid CSV file.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Empty or invalid CSV file.', 'mie-yoast' ) ] );
         }
 
         // Map columns.
         $expected_headers = [ 'ID', 'Post Type', 'Slug', 'Keyphrase', 'SEO Title', 'SEO Description' ];
         if ( $header !== $expected_headers ) {
             fclose( $handle );
-            wp_send_json_error( [ 'message' => esc_html__( 'Invalid CSV header. Please make sure the CSV file is in the correct format.', 'metadata-import-export-yoast' ) ] );
+            wp_send_json_error( [ 'message' => esc_html__( 'Invalid CSV header. Please make sure the CSV file is in the correct format.', 'mie-yoast' ) ] );
         }
 
         // Retrieve settings.
@@ -410,7 +411,7 @@ class Metadata_Import_Export_Yoast {
             // Check if post exists.
             $post = get_post( $post_id );
             if ( ! $post ) {
-                $errors[] = sprintf( esc_html__( 'Post ID %d not found.', 'metadata-import-export-yoast' ), $post_id );
+                $errors[] = sprintf( esc_html__( 'Post ID %d not found.', 'mie-yoast' ), $post_id );
                 continue;
             }
 
@@ -428,7 +429,7 @@ class Metadata_Import_Export_Yoast {
             // Initialize variables to track whether fields were updated.
             $field_updated = false;
 
-            // Update post meta if the value is different.
+            // Update keyphrase if the value is different.
             $current_keyphrase = get_post_meta( $post_id, '_yoast_wpseo_focuskw', true );
             if ( $current_keyphrase !== $keyphrase ) {
                 update_post_meta( $post_id, '_yoast_wpseo_focuskw', $keyphrase );
@@ -437,6 +438,7 @@ class Metadata_Import_Export_Yoast {
                 $field_updated = true;
             }
 
+            // Update title if the value is different.
             $current_seo_title = get_post_meta( $post_id, '_yoast_wpseo_title', true );
             if ( $current_seo_title !== $seo_title ) {
                 update_post_meta( $post_id, '_yoast_wpseo_title', $seo_title );
@@ -445,6 +447,7 @@ class Metadata_Import_Export_Yoast {
                 $field_updated = true;
             }
 
+            // Update description if the value is different.
             $current_seo_description = get_post_meta( $post_id, '_yoast_wpseo_metadesc', true );
             if ( $current_seo_description !== $seo_description ) {
                 update_post_meta( $post_id, '_yoast_wpseo_metadesc', $seo_description );
@@ -482,14 +485,14 @@ class Metadata_Import_Export_Yoast {
         add_settings_section( 'miey_settings_section', '', null, 'miey-settings' );
         add_settings_field(
             'miey_post_types',
-            esc_html__( 'Select Post Types', 'metadata-import-export-yoast' ),
+            esc_html__( 'Select Post Types', 'mie-yoast' ),
             [ $this, 'render_post_types_field' ],
             'miey-settings',
             'miey_settings_section'
         );
         add_settings_field(
             'miey_user_roles',
-            esc_html__( 'Select User Roles', 'metadata-import-export-yoast' ),
+            esc_html__( 'Select User Roles', 'mie-yoast' ),
             [ $this, 'render_user_roles_field' ],
             'miey-settings',
             'miey_settings_section'
@@ -548,7 +551,7 @@ class Metadata_Import_Export_Yoast {
     public function render_settings_page() {
         // Check if the user has permission.
         if ( ! current_user_can( 'administrator' ) ) {
-            wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'metadata-import-export-yoast' ) );
+            wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'mie-yoast' ) );
         }
         ?>
         <div class="miey-container">
