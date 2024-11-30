@@ -48,7 +48,7 @@ $myUpdateChecker->setBranch( 'main' );
  * Handles the import/export functionality for Yoast SEO metadata.
  *
  * @package Metadata_Import_Export_For_Yoast
- * @since 1.0.0
+ * @since   1.0.0
  */
 class Metadata_Import_Export_Yoast {
     /**
@@ -78,11 +78,13 @@ class Metadata_Import_Export_Yoast {
      * @return void
      */
     public function register_menu() {
+        $capability = $this->get_required_capability();
+
         $this->hook_suffix = add_submenu_page(
             'wpseo_dashboard',
             esc_html__( 'Metadata Import/Export for Yoast', 'mie-yoast' ),
             esc_html__( 'Import/Export', 'mie-yoast' ),
-            'read',
+            $capability,
             'yoast-metadata-import',
             [ $this, 'render_tabs_page' ]
         );
@@ -100,7 +102,7 @@ class Metadata_Import_Export_Yoast {
         if ( $hook === $this->hook_suffix ) {
             wp_enqueue_script(
                 'metadata-yoast-js',
-                plugin_dir_url( __FILE__ ) . 'assets/js/metadata-yoast.js',
+                plugins_url( 'assets/js/metadata-yoast.js', __FILE__ ),
                 [],
                 MIEY_VERSION,
                 true
@@ -118,7 +120,7 @@ class Metadata_Import_Export_Yoast {
             // Enqueue the custom CSS.
             wp_enqueue_style(
                 'metadata-yoast-css',
-                plugin_dir_url( __FILE__ ) . 'assets/css/metadata-yoast.css',
+                plugins_url( 'assets/css/metadata-yoast.css', __FILE__ ),
                 [],
                 MIEY_VERSION
             );
@@ -231,7 +233,7 @@ class Metadata_Import_Export_Yoast {
     }
 
     /**
-     * Handle the CSV export via AJAX.
+     * Handle the CSV export via AJAX with pagination.
      *
      * @since  1.0.0
      * @return void
@@ -256,54 +258,78 @@ class Metadata_Import_Export_Yoast {
 
         $args = [
             'post_type'      => $selected_post_types,
-            'posts_per_page' => -1,
+            'posts_per_page' => 1,
             'post_status'    => 'any',
+            'fields'         => 'ids',
         ];
 
-        $posts = get_posts( $args );
+        // Get total number of posts.
+        $total_query = new WP_Query( $args );
+        $total_posts = $total_query->found_posts;
 
-        $total_posts            = 0;
+        // Set up pagination.
+        $paged       = 1;
+        $per_page    = apply_filters( 'miey_csv_export_per_page', 25 );
+        $total_pages = ceil( $total_posts / $per_page );
+
+        $csv_data = [
+            [
+                esc_html__( 'ID', 'mie-yoast' ),
+                esc_html__( 'Post Type', 'mie-yoast' ),
+                esc_html__( 'Slug', 'mie-yoast' ),
+                esc_html__( 'Keyphrase', 'mie-yoast' ),
+                esc_html__( 'SEO Title', 'mie-yoast' ),
+                esc_html__( 'SEO Description', 'mie-yoast' ),
+            ]
+        ];
+
+        $total_posts_processed  = 0;
         $post_type_counts       = [];
         $posts_with_metadata    = 0;
         $posts_without_metadata = 0;
 
-        // @TODO localize these.
-        $csv_data = [ [ 'ID', 'Post Type', 'Slug', 'Keyphrase', 'SEO Title', 'SEO Description' ] ];
+        while ( $paged <= $total_pages ) {
+            $args['paged']          = $paged;
+            $args['posts_per_page'] = $per_page;
+            $args['fields']         = '';
 
-        foreach ( $posts as $post ) {
-            $total_posts++;
-            $post_type = $post->post_type;
-            if ( ! isset( $post_type_counts[ $post_type ] ) ) {
-                $post_type_counts[ $post_type ] = 0;
+            $posts = get_posts( $args );
+
+            foreach ( $posts as $post ) {
+                $total_posts_processed++;
+                $post_type = $post->post_type;
+                if ( ! isset( $post_type_counts[ $post_type ] ) ) {
+                    $post_type_counts[ $post_type ] = 0;
+                }
+                $post_type_counts[ $post_type ]++;
+
+                $keyphrase       = get_post_meta( $post->ID, '_yoast_wpseo_focuskw', true );
+                $seo_title       = get_post_meta( $post->ID, '_yoast_wpseo_title', true );
+                $seo_description = get_post_meta( $post->ID, '_yoast_wpseo_metadesc', true );
+
+                if ( $keyphrase || $seo_title || $seo_description ) {
+                    $posts_with_metadata++;
+                } else {
+                    $posts_without_metadata++;
+                }
+
+                $csv_data[] = [
+                    $post->ID,
+                    $post_type,
+                    $post->post_name,
+                    $keyphrase,
+                    $seo_title,
+                    $seo_description,
+                ];
             }
-            $post_type_counts[ $post_type ]++;
 
-            $keyphrase       = get_post_meta( $post->ID, '_yoast_wpseo_focuskw', true );
-            $seo_title       = get_post_meta( $post->ID, '_yoast_wpseo_title', true );
-            $seo_description = get_post_meta( $post->ID, '_yoast_wpseo_metadesc', true );
-
-            if ( $keyphrase || $seo_title || $seo_description ) {
-                $posts_with_metadata++;
-            } else {
-                $posts_without_metadata++;
-            }
-
-            $csv_data[] = [
-                $post->ID,
-                $post_type,
-                $post->post_name,
-                $keyphrase,
-                $seo_title,
-                $seo_description,
-            ];
+            $paged++;
         }
 
         // Generate the file name with domain and datetime.
-        $domain   = parse_url( home_url(), PHP_URL_HOST );
-        $datetime = current_time( 'Y-m-d_H-i-s' );
-
-        $filename = $domain . '-yoast-metadata-export-' . $datetime . '.csv';
-
+        $domain     = parse_url( home_url(), PHP_URL_HOST );
+        $datetime   = current_time( 'Y-m-d_H-i-s' );
+        $filename   = $domain . '-yoast-metadata-export-' . $datetime . '.csv';
         $upload_dir = wp_upload_dir();
         $file_path  = $upload_dir['basedir'] . '/' . $filename;
         $file_url   = $upload_dir['baseurl'] . '/' . $filename;
@@ -318,7 +344,7 @@ class Metadata_Import_Export_Yoast {
         $export_data = [
             'file_url'               => $file_url,
             'file_name'              => $filename,
-            'total_posts'            => $total_posts,
+            'total_posts'            => $total_posts_processed,
             'post_type_counts'       => $post_type_counts,
             'posts_with_metadata'    => $posts_with_metadata,
             'posts_without_metadata' => $posts_without_metadata,
@@ -398,10 +424,10 @@ class Metadata_Import_Export_Yoast {
             $post_id         = intval( $row[0] );
             $post_type       = $row[1];
             $slug            = $row[2];
-            $keyphrase       = $row[3];
-            $seo_title       = $row[4];
-            $seo_description = $row[5];
-
+            $keyphrase       = sanitize_text_field( $row[3] );
+            $seo_title       = sanitize_text_field( $row[4] );
+            $seo_description = sanitize_textarea_field( $row[5] );
+            
             // Check if post type is selected in settings.
             if ( ! in_array( $post_type, $selected_post_types, true ) ) {
                 // Skip this post.
@@ -550,7 +576,7 @@ class Metadata_Import_Export_Yoast {
      */
     public function render_settings_page() {
         // Check if the user has permission.
-        if ( ! current_user_can( 'administrator' ) ) {
+        if ( ! $this->user_has_permission() ) {
             wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'mie-yoast' ) );
         }
         ?>
@@ -569,23 +595,55 @@ class Metadata_Import_Export_Yoast {
     /**
      * Check if the current user has permission to access the plugin's functionalities.
      *
-     * @return bool True if the user has permission, false otherwise.
-     *
      * @since  1.0.0
-     * @return bool
+     * @return bool True if the user has permission, false otherwise.
      */
     private function user_has_permission() {
+        $capability = $this->get_required_capability();
+        return current_user_can( $capability );
+    }
+
+    /**
+     * Get the required capability based on selected user roles.
+     *
+     * @since  1.0.0
+     * @return string Capability required to access the plugin's admin page.
+     */
+    private function get_required_capability() {
         $settings      = get_option( 'miey_settings' );
         $allowed_roles = $settings['user_roles'] ?? [ 'administrator' ];
 
+        // Map roles to their primary capabilities.
+        $role_to_capability = [
+            'administrator' => 'manage_options',
+            'editor'        => 'edit_pages',
+            'author'        => 'publish_posts',
+            'contributor'   => 'edit_posts',
+            'subscriber'    => 'read',
+        ];
+
+        // Collect capabilities based on selected roles.
+        $capabilities = [];
         foreach ( $allowed_roles as $role ) {
-            if ( current_user_can( $role ) ) {
-                return true;
+            if ( isset( $role_to_capability[ $role ] ) ) {
+                $capabilities[] = $role_to_capability[ $role ];
             }
         }
 
-        return false;
+        // Default to 'manage_options' if no valid roles are selected.
+        if ( empty( $capabilities ) ) {
+            return 'manage_options';
+        }
+
+        /**
+         * Return the capability with the lowest privilege.
+         * For this example, we'll return the capability with the least privileges.
+         * You might adjust this logic based on your specific needs.
+         */
+        $capabilities = array_unique( $capabilities );
+        return array_pop( $capabilities );
     }
+
 }
 
 // Initialize the plugin.
