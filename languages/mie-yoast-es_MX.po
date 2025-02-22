@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Metadata Import/Export for Yoast\n"
+"POT-Creation-Date: 2025-02-21 20:54-0500\n"
+"PO-Revision-Date: 2025-02-21 20:54-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: metadata-importer-exporter-for-yoast.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#. Plugin Name of the plugin/theme
+#: metadata-importer-exporter-for-yoast.php:107
+#: metadata-importer-exporter-for-yoast.php:167
+msgid "Metadata Import/Export for Yoast"
+msgstr "Importación y exportación de metadatos para Yoast"
+
+#: metadata-importer-exporter-for-yoast.php:108
+msgid "Import/Export"
+msgstr "Importar/Exportar"
+
+#: metadata-importer-exporter-for-yoast.php:161
+#: metadata-importer-exporter-for-yoast.php:602
+msgid "You do not have sufficient permissions to access this page."
+msgstr "No tienes suficientes permisos para acceder a esta página."
+
+#: metadata-importer-exporter-for-yoast.php:169
+msgid "Support"
+msgstr "Soporte"
+
+#: metadata-importer-exporter-for-yoast.php:172
+msgid "Documentation"
+msgstr "Documentación"
+
+#: metadata-importer-exporter-for-yoast.php:177
+msgid "Import"
+msgstr "Importar"
+
+#: metadata-importer-exporter-for-yoast.php:180
+msgid "Export"
+msgstr "Exportar"
+
+#: metadata-importer-exporter-for-yoast.php:183
+msgid "Settings"
+msgstr "Ajustes"
+
+#: metadata-importer-exporter-for-yoast.php:216
+msgid "Import Yoast SEO Metadata"
+msgstr "Importar metadatos Yoast SEO"
+
+#: metadata-importer-exporter-for-yoast.php:217
+msgid ""
+"Upload a CSV file to import metadata into your site. Please ensure the file "
+"is properly formatted according to the plugin's specifications."
+msgstr ""
+"Cargue un archivo CSV para importar metadatos a su sitio. Asegúrese de que "
+"el archivo tiene el formato adecuado según las especificaciones del "
+"complemento."
+
+#: metadata-importer-exporter-for-yoast.php:221
+msgid "Upload and Import"
+msgstr "Cargar e importar"
+
+#: metadata-importer-exporter-for-yoast.php:243
+msgid "Export Yoast SEO Metadata"
+msgstr "Exportar metadatos Yoast SEO"
+
+#: metadata-importer-exporter-for-yoast.php:244
+msgid ""
+"Click the button below to export your site's Yoast SEO metadata to a CSV "
+"file. You can edit this file and import it back to update your metadata."
+msgstr ""
+"Haz clic en el botón de abajo para exportar los metadatos Yoast SEO de tu "
+"sitio a un archivo CSV. Puedes editar este archivo e importarlo de nuevo "
+"para actualizar tus metadatos."
+
+#: metadata-importer-exporter-for-yoast.php:246
+msgid "Export Metadata"
+msgstr "Exportar metadatos"
+
+#: metadata-importer-exporter-for-yoast.php:269
+#: metadata-importer-exporter-for-yoast.php:390
+msgid "Permission denied."
+msgstr "Permiso denegado."
+
+#: metadata-importer-exporter-for-yoast.php:299
+msgid "ID"
+msgstr "ID"
+
+#: metadata-importer-exporter-for-yoast.php:300
+msgid "Post Type"
+msgstr "Tipo de mensaje"
+
+#: metadata-importer-exporter-for-yoast.php:301
+msgid "Slug"
+msgstr "Slug"
+
+#: metadata-importer-exporter-for-yoast.php:302
+msgid "Keyphrase"
+msgstr "Frase clave"
+
+#: metadata-importer-exporter-for-yoast.php:303
+msgid "SEO Title"
+msgstr "Título SEO"
+
+#: metadata-importer-exporter-for-yoast.php:304
+msgid "SEO Description"
+msgstr "Descripción SEO"
+
+#: metadata-importer-exporter-for-yoast.php:394
+msgid "No file uploaded."
+msgstr "No se ha cargado ningún archivo."
+
+#: metadata-importer-exporter-for-yoast.php:402
+msgid "Invalid file type. Please upload a CSV file."
+msgstr "Tipo de archivo no válido. Por favor, cargue un archivo CSV."
+
+#: metadata-importer-exporter-for-yoast.php:408
+msgid "Could not open the uploaded file."
+msgstr "No se ha podido abrir el archivo cargado."
+
+#: metadata-importer-exporter-for-yoast.php:414
+msgid "Empty or invalid CSV file."
+msgstr "Archivo CSV vacío o no válido."
+
+#: metadata-importer-exporter-for-yoast.php:421
+msgid ""
+"Invalid CSV header. Please make sure the CSV file is in the correct format."
+msgstr ""
+"Cabecera CSV no válida. Asegúrese de que el archivo CSV tiene el formato "
+"correcto."
+
+#: metadata-importer-exporter-for-yoast.php:462
+#, php-format
+msgid "Post ID %d not found."
+msgstr "Post ID %d no encontrado."
+
+#: metadata-importer-exporter-for-yoast.php:536
+msgid "Select Post Types"
+msgstr "Seleccionar tipos de entrada"
+
+#: metadata-importer-exporter-for-yoast.php:543
+msgid "Select User Roles"
+msgstr "Seleccionar funciones de usuario"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/robertdevore/metadata-import-export-for-yoast/"
+msgstr "https://github.com/robertdevore/metadata-import-export-for-yoast/"
+
+#. Description of the plugin/theme
+msgid "Import and export Yoast SEO metadata via CSV files."
+msgstr "Importe y exporte metadatos Yoast SEO mediante archivos CSV."
+
+#. Author of the plugin/theme
+msgid "Robert DeVore"
+msgstr "Robert DeVore"
+
+#. Author URI of the plugin/theme
+msgid "https://robertdevore.com/"
+msgstr "https://robertdevore.com/"
