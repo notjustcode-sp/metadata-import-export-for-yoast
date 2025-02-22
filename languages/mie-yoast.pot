@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Metadata Import/Export for Yoast\n"
-"POT-Creation-Date: 2024-11-30 00:05-0500\n"
-"PO-Revision-Date: 2024-11-30 00:05-0500\n"
+"POT-Creation-Date: 2025-02-21 20:48-0500\n"
+"PO-Revision-Date: 2025-02-21 20:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,171 +20,131 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
-"X-Poedit-SearchPathExcluded-1: includes/plugin-update-checker/vendor\n"
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:56
-msgid "View details"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:79
-#, php-format
-msgid "More information about %s"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:130
-msgid "Check for updates"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:217
-#, php-format
-msgctxt "the plugin title"
-msgid "The %s plugin is up to date."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:219
-#, php-format
-msgctxt "the plugin title"
-msgid "A new version of the %s plugin is available."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:221
-#, php-format
-msgctxt "the plugin title"
-msgid "Could not determine if updates are available for %s."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:227
-#, php-format
-msgid "Unknown update checker status \"%s\""
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Vcs/PluginUpdateChecker.php:113
-msgid "There is no changelog available."
-msgstr ""
+"X-Poedit-SearchPathExcluded-1: vendor\n"
 
 #. Plugin Name of the plugin/theme
-#: metadata-importer-exporter-for-yoast.php:85
-#: metadata-importer-exporter-for-yoast.php:145
+#: metadata-importer-exporter-for-yoast.php:107
+#: metadata-importer-exporter-for-yoast.php:167
 msgid "Metadata Import/Export for Yoast"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:86
+#: metadata-importer-exporter-for-yoast.php:108
 msgid "Import/Export"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:139
-#: metadata-importer-exporter-for-yoast.php:580
+#: metadata-importer-exporter-for-yoast.php:161
+#: metadata-importer-exporter-for-yoast.php:602
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:147
+#: metadata-importer-exporter-for-yoast.php:169
 msgid "Support"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:150
+#: metadata-importer-exporter-for-yoast.php:172
 msgid "Documentation"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:155
+#: metadata-importer-exporter-for-yoast.php:177
 msgid "Import"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:158
+#: metadata-importer-exporter-for-yoast.php:180
 msgid "Export"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:161
+#: metadata-importer-exporter-for-yoast.php:183
 msgid "Settings"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:194
+#: metadata-importer-exporter-for-yoast.php:216
 msgid "Import Yoast SEO Metadata"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:195
+#: metadata-importer-exporter-for-yoast.php:217
 msgid ""
 "Upload a CSV file to import metadata into your site. Please ensure the file "
 "is properly formatted according to the plugin's specifications."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:199
+#: metadata-importer-exporter-for-yoast.php:221
 msgid "Upload and Import"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:221
+#: metadata-importer-exporter-for-yoast.php:243
 msgid "Export Yoast SEO Metadata"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:222
+#: metadata-importer-exporter-for-yoast.php:244
 msgid ""
 "Click the button below to export your site's Yoast SEO metadata to a CSV "
 "file. You can edit this file and import it back to update your metadata."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:224
+#: metadata-importer-exporter-for-yoast.php:246
 msgid "Export Metadata"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:247
-#: metadata-importer-exporter-for-yoast.php:368
+#: metadata-importer-exporter-for-yoast.php:269
+#: metadata-importer-exporter-for-yoast.php:390
 msgid "Permission denied."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:277
+#: metadata-importer-exporter-for-yoast.php:299
 msgid "ID"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:278
+#: metadata-importer-exporter-for-yoast.php:300
 msgid "Post Type"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:279
+#: metadata-importer-exporter-for-yoast.php:301
 msgid "Slug"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:280
+#: metadata-importer-exporter-for-yoast.php:302
 msgid "Keyphrase"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:281
+#: metadata-importer-exporter-for-yoast.php:303
 msgid "SEO Title"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:282
+#: metadata-importer-exporter-for-yoast.php:304
 msgid "SEO Description"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:372
+#: metadata-importer-exporter-for-yoast.php:394
 msgid "No file uploaded."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:380
+#: metadata-importer-exporter-for-yoast.php:402
 msgid "Invalid file type. Please upload a CSV file."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:386
+#: metadata-importer-exporter-for-yoast.php:408
 msgid "Could not open the uploaded file."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:392
+#: metadata-importer-exporter-for-yoast.php:414
 msgid "Empty or invalid CSV file."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:399
+#: metadata-importer-exporter-for-yoast.php:421
 msgid ""
 "Invalid CSV header. Please make sure the CSV file is in the correct format."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:440
+#: metadata-importer-exporter-for-yoast.php:462
 #, php-format
 msgid "Post ID %d not found."
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:514
+#: metadata-importer-exporter-for-yoast.php:536
 msgid "Select Post Types"
 msgstr ""
 
-#: metadata-importer-exporter-for-yoast.php:521
+#: metadata-importer-exporter-for-yoast.php:543
 msgid "Select User Roles"
 msgstr ""
 

@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'MIEY_VERSION', '1.0.0' );
 
 // Include the Plugin Update Checker.
-require 'includes/plugin-update-checker/plugin-update-checker.php';
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
