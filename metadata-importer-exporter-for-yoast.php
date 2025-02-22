@@ -50,6 +50,21 @@ use RobertDevore\WPComCheck\WPComPluginHandler;
 new WPComPluginHandler( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' );
 
 /**
+ * Load plugin text domain for translations
+ * 
+ * @since  1.0.1
+ * @return void
+ */
+function miey_load_textdomain() {
+    load_plugin_textdomain( 
+        'mie-yoast',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+    );
+}
+add_action( 'plugins_loaded', 'miey_load_textdomain' );
+
+/**
  * Class Metadata_Import_Export_Yoast
  *
  * Handles the import/export functionality for Yoast SEO metadata.
