@@ -434,6 +434,7 @@ class Metadata_Import_Export_Yoast {
             'posts_updated'    => 0,
             'post_type_counts' => [],
             'field_updates'    => [
+                'slug'            => 0,
                 'keyphrase'       => 0,
                 'seo_title'       => 0,
                 'seo_description' => 0,
@@ -449,7 +450,7 @@ class Metadata_Import_Export_Yoast {
             $keyphrase       = sanitize_text_field( $row[3] );
             $seo_title       = sanitize_text_field( $row[4] );
             $seo_description = sanitize_textarea_field( $row[5] );
-            
+
             // Check if post type is selected in settings.
             if ( ! in_array( $post_type, $selected_post_types, true ) ) {
                 // Skip this post.
@@ -467,6 +468,7 @@ class Metadata_Import_Export_Yoast {
                 $import_stats['post_type_counts'][ $post_type ] = [
                     'posts_updated' => 0,
                     'field_updates' => [
+                        'slug'            => 0,
                         'keyphrase'       => 0,
                         'seo_title'       => 0,
                         'seo_description' => 0,
@@ -501,6 +503,19 @@ class Metadata_Import_Export_Yoast {
                 update_post_meta( $post_id, '_yoast_wpseo_metadesc', $seo_description );
                 $import_stats['field_updates']['seo_description']++;
                 $import_stats['post_type_counts'][ $post_type ]['field_updates']['seo_description']++;
+                $field_updated = true;
+            }
+
+            $post         = get_post( $post_id );
+            $current_slug = $post->post_name;
+
+            if ( $current_slug !== $slug ) {
+                $post_data = array( 'ID'        => $post_id,
+                                    'post_name' => sanitize_title( $slug ) );
+
+                wp_update_post( $post_data );
+                $import_stats['field_updates']['slug']++;
+                $import_stats['post_type_counts'][ $post_type ]['field_updates']['slug']++;
                 $field_updated = true;
             }
 

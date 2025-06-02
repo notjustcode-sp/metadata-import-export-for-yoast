@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <tr>
                                     <td>${postType}</td>
                                     <td>${stats.posts_updated}</td>
+                                    <td>${stats.field_updates.slug}</td>
                                     <td>${stats.field_updates.keyphrase}</td>
                                     <td>${stats.field_updates.seo_title}</td>
                                     <td>${stats.field_updates.seo_description}</td>
@@ -162,6 +163,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <td>${importStats.posts_updated}</td>
                                     </tr>
                                     <tr>
+                                        <th>Slugs Updated</th>
+                                        <td>${importStats.field_updates.slug}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Keyphrases Updated</th>
                                         <td>${importStats.field_updates.keyphrase}</td>
                                     </tr>
@@ -179,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <tr>
                                         <th>Post Type</th>
                                         <th>Posts Updated</th>
+                                        <th>Slugs</th>
                                         <th>Keyphrases</th>
                                         <th>SEO Titles</th>
                                         <th>SEO Descriptions</th>
